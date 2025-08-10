@@ -1,10 +1,8 @@
 (library
  (name ppx_deriving_router_runtime_dream_runtime)
  (public_name ppx_deriving_router.dream_runtime)
- (virtual_deps dream)
- (optional)
  (wrapped false)
  (libraries
   dream
   ppx_deriving_router.runtime_lib
-  melange-json-native.ppx-runtime))
+  melange-json-native))
