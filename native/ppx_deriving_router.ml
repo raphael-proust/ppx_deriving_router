@@ -276,8 +276,8 @@ let derive_path td (exemplar, ctors) =
                     (Ppx_deriving_router_runtime.Request.body [%e req])
                     (fun [%p pbody] ->
                       let [%p pbody] =
-                        try Yojson.Basic.from_string [%e ebody]
-                        with Yojson.Json_error msg ->
+                        try Melange_json.of_string [%e ebody]
+                        with Melange_json.Of_string_error msg ->
                           raise
                             (Ppx_deriving_router_runtime.Handle
                              .Invalid_body
@@ -285,11 +285,10 @@ let derive_path td (exemplar, ctors) =
                       in
                       let [%p pbody] =
                         try [%of_json: [%t body]] [%e ebody]
-                        with Yojson.Basic.Util.Type_error (msg, _) ->
+                        with Melange_json.Of_json_error err ->
+                          let msg = Melange_json.of_json_error_to_string err in
                           raise
-                            (Ppx_deriving_router_runtime.Handle
-                             .Invalid_body
-                               msg)
+                            (Ppx_deriving_router_runtime.Handle.Invalid_body msg)
                       in
                       Ppx_deriving_router_runtime.IO.return [%e make args])]
           in
