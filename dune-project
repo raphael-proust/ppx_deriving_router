@@ -24,8 +24,8 @@
    (>= 4.14))
   dune
   lwt
-  ppxlib
-  containers
+  (ppxlib (>= 0.36))
+  (containers (>= 3.18))
   routes
   melange
   melange-fetch

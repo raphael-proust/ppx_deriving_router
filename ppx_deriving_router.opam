@@ -10,8 +10,8 @@ depends: [
   "ocaml" {>= "4.14"}
   "dune" {>= "3.11"}
   "lwt"
-  "ppxlib"
-  "containers"
+  "ppxlib" {>= "0.36"}
+  "containers" {>= "3.18"}
   "routes"
   "melange"
   "melange-fetch"
